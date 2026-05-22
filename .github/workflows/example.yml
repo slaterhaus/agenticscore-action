@@ -1,0 +1,26 @@
+# Example: Score your OpenAPI spec on every PR.
+# Copy this into your own repo's .github/workflows/ directory.
+
+name: AgenticScore
+
+on:
+  pull_request:
+    paths:
+      - 'openapi.yaml'      # adjust to your spec path(s)
+      - 'openapi.json'
+
+jobs:
+  score:
+    runs-on: ubuntu-latest
+    permissions:
+      pull-requests: write   # needed to post the PR comment
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Score OpenAPI spec
+        uses: slaterhaus/agenticscore-action@v1
+        with:
+          api-key: ${{ secrets.AGENTICSCORE_API_KEY }}
+          spec-path: openapi.yaml
+          fail-below: 70        # optional: fail the build if score drops below 70

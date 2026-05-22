@@ -1,0 +1,35 @@
+name: AgenticScore
+description: Score your OpenAPI spec for AI agent readiness and post results as a PR comment.
+author: slaterhaus
+
+branding:
+  icon: activity
+  color: purple
+
+inputs:
+  api-key:
+    description: Your AgenticScore API key (ar_live_... or ar_test_...)
+    required: true
+  spec-path:
+    description: Path to your OpenAPI spec file (JSON or YAML)
+    required: true
+  fail-below:
+    description: Fail the workflow if the score is below this threshold (0–100). Leave unset to never fail.
+    required: false
+    default: ''
+  api-url:
+    description: AgenticScore API base URL (override for testing)
+    required: false
+    default: https://api.agenticscore.dev
+
+outputs:
+  score:
+    description: Overall score (0–100)
+  grade:
+    description: Letter grade (A–F)
+  passed:
+    description: true if score met the fail-below threshold (or no threshold set)
+
+runs:
+  using: node20
+  main: dist/index.js

@@ -1,0 +1,12 @@
+{
+  "name": "agenticscore-action",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "build": "tsc && node scripts/bundle.js"
+  },
+  "devDependencies": {
+    "@types/node": "^25.9.1",
+    "typescript": "^5.4.0"
+  }
+}
