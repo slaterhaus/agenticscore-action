@@ -9,6 +9,8 @@ Score your OpenAPI spec for AI agent readiness on every pull request.
   with:
     api-key: ${{ secrets.AGENTICSCORE_API_KEY }}
     spec-path: openapi.yaml
+  env:
+    GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 ```
 
 Add `AGENTICSCORE_API_KEY` to your repository secrets (Settings → Secrets → Actions). A Pro plan API key is required.
@@ -85,6 +87,8 @@ jobs:
           api-key: ${{ secrets.AGENTICSCORE_API_KEY }}
           spec-path: openapi.yaml
           fail-below: 70
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 ```
 
 ## Get an API key

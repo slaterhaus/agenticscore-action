@@ -24,3 +24,5 @@ jobs:
           api-key: ${{ secrets.AGENTICSCORE_API_KEY }}
           spec-path: openapi.yaml
           fail-below: 70        # optional: fail the build if score drops below 70
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
