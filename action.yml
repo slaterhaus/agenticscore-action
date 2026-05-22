@@ -31,5 +31,5 @@ outputs:
     description: true if score met the fail-below threshold (or no threshold set)
 
 runs:
-  using: node20
+  using: node24
   main: dist/index.js

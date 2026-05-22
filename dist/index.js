@@ -37,8 +37,12 @@ const fs = __importStar(require("fs"));
 const https = __importStar(require("https"));
 const path = __importStar(require("path"));
 // Minimal GitHub Actions toolkit — avoids bundling @actions/core et al.
+// GitHub sets INPUT_<NAME> where NAME is uppercased with spaces replaced by _
+// but hyphens are kept as-is (INPUT_API-KEY not INPUT_API_KEY)
 function getInput(name) {
-    return process.env[`INPUT_${name.toUpperCase().replace(/-/g, "_")}`] ?? "";
+    return (process.env[`INPUT_${name.toUpperCase()}`] ??
+        process.env[`INPUT_${name.toUpperCase().replace(/-/g, "_")}`] ??
+        "");
 }
 function setOutput(name, value) {
     const file = process.env.GITHUB_OUTPUT;
